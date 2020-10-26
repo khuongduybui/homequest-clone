@@ -8,3 +8,14 @@
 </nav>
 
 <au-viewport default="welcome" fallback="missing"></au-viewport>
+
+<div>Day: ${day} Workers: ${total.worker} Free Workers: ${total.workerFree}</div>
+Food: ${food} Wood: ${wood}
+
+<div repeat.for="base of bases">
+  <div>Base: ${$index} Worker: ${base.worker} Free Worker: ${base.workerFree}</div>
+  <button click.delegate="buildingAdd(base, 'house')">House: ${base.house}</button>
+  <button click.delegate="workerAdd(base, 'logger')">Logger: ${base.logger}/${base.loggerMax}</button>
+  <button click.delegate="buildingAdd(base, 'farm')">Farm: ${base.farm}</button>
+  <button click.delegate="workerAdd(base, 'farmer')">Farmer: ${base.farmer}/${base.farmerMax}</button>
+</div>
