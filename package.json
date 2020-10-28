@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://homequest.vercel.app",
   "devDependencies": {
-    "solid-js": "^0.21.3",
+    "solid-js": "0.21.3",
     "solid-scripts": "0.0.42"
   },
   "dependencies": {},
