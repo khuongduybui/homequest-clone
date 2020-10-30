@@ -16,7 +16,8 @@
     "postinstall": "patch-package",
     "start": "solid-scripts start",
     "build": "solid-scripts build",
-    "test": "solid-scripts test"
+    "test": "solid-scripts test",
+    "coverage": "solid-scripts test src --coverage"
   },
   "browserslist": [
     "Chrome 74",
