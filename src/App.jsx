@@ -37,7 +37,7 @@ const Building = ({ base, building, title }) => {
 const Base = ({ base }) => {
   return (
     <>
-      <div>Base</div>
+      <div>Base {base.id}</div>
       <section>
         <Building base={base} building='house' title='House'></Building>
         <Building base={base} building='farm' title='Farm'></Building>
@@ -51,6 +51,19 @@ const Base = ({ base }) => {
         <Job base={base} job='quarrier' title='Quarrier'></Job>
       </section>
     </>
+  );
+};
+
+const Quest = ({ quest }) => {
+  return (
+    <section>
+      <div>{quest.title}</div>
+      <p>{quest.content}</p>
+      <ul>
+        <For each={quest.objectives}>{(objective) => <li>{objective}</li>}</For>
+      </ul>
+      <Show when={quest.complete()}>DONE</Show>
+    </section>
   );
 };
 
@@ -73,6 +86,7 @@ function App() {
         <button onClick={endDay}>End Day</button>
         <button onClick={reset}>Reset</button>
       </section>
+
       <section>
         <div>
           Food <code>{state.food()}</code>/<code>{state.foodMax()}</code> (+<code>{state.foodRate()}</code> from workers, -<code>{state.eatRate()}</code> from
@@ -85,7 +99,10 @@ function App() {
           Stone <code>{state.stone()}</code>/<code>{state.stoneMax()}</code> (+<code>{state.stoneRate()}</code> from workers)
         </div>
       </section>
-      <Base base={state.baseState(0)}></Base>
+
+      <For each={state.bases()}>{(base) => <Base base={base}></Base>}</For>
+
+      <For each={state.quests()}>{(quest) => <Quest quest={quest}></Quest>}</For>
     </>
   );
 }

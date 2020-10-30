@@ -8,7 +8,30 @@ export default class AppState {
     this.state = state;
     this.setState = setState;
 
-    this.baseStates = [new BaseState(this, 'base0', { loggerMax: 30, quarrierMax: 30 })];
+    this.baseStates = [new BaseState(this, 'base0', { loggerMax: 30, quarrierMax: 30 }), new BaseState(this, 'base1')];
+    this.questStates = [
+      new QuestState(
+        this,
+        'Another Life',
+        "Welcome. You find yourself in an unknown place. Unsure of what these lands might hold, you decide it's best to grow your settlement. Hurry and assign your workers to gather resources and construct your first buildings.",
+        ["Don' starve and build a farm."],
+        ['this.app.baseState(0).farm() > 0'],
+      ),
+      new QuestState(
+        this,
+        'Looking ahead',
+        'Great work. You have proved the means to survive, but your settlement is still weak. First of all, we have to expand further, Build a few houses and shelter more inhabitants.',
+        ['Raise your population to 10.'],
+        ['this.app.population() >= 10'],
+      ),
+      new QuestState(
+        this,
+        'Our Home',
+        "Now living in a small village, your people are grateful to be here. It's not too bad here after all! The only thing we are lacking is a purpose. You understand, and devise a brilliant course of action. We shall construct a monument! A monument to rally our spirits together, and to mark this land as our new home!",
+        ['Build a monument.'],
+        ['this.app.baseState(0).monument() > 0'],
+      ),
+    ];
   }
 
   effect() {
@@ -26,11 +49,26 @@ export default class AppState {
   }
 
   bases() {
-    return this.state.bases;
+    return this.baseStates.filter((base, index) => this.state.bases[index]?.active);
   }
 
   baseState(index) {
     return this.baseStates[index];
+  }
+
+  quests() {
+    let stop = false;
+    return this.questStates.filter((quest) => {
+      let result = !stop;
+      if (!quest.complete()) {
+        stop = true;
+      }
+      return result;
+    });
+  }
+
+  questState(index) {
+    return this.questStates[index];
   }
 
   food() {
@@ -105,7 +143,7 @@ class BaseState {
   constructor(app, id, initState = {}) {
     this.app = app;
     this.id = id;
-    const initStateDefault = { house: 1, worker: 1, logger: 0, farm: 0, farmer: 0, quarrier: 0 };
+    const initStateDefault = { house: 1, worker: 1, logger: 0, farm: 0, farmer: 0, quarrier: 0, monument: 0 };
     this.stateInit = { ...initStateDefault, ...initState };
     const [state, setState] = createState(localStorage && localStorage[id] ? JSON.parse(localStorage[id]) : { ...this.stateInit });
     this.state = state;
@@ -164,11 +202,15 @@ class BaseState {
     return this.state.quarrier;
   }
 
+  monument() {
+    return this.state.monument;
+  }
+
   /**
    * Assigns a free worker to a specific type.
    *
    * @param {string} job The type of worker.
-   * @returns {boolean} Whether the assign command was successful.
+   * @return {boolean} Whether the assign command was successful.
    */
   assign(job) {
     const jobSignal = this[job].bind(this);
@@ -188,7 +230,7 @@ class BaseState {
    * Unassigns a worker of a specific type.
    *
    * @param {string} job The type of worker.
-   * @returns {boolean} Whether the unassign command was successful.
+   * @return {boolean} Whether the unassign command was successful.
    */
   unassign(job) {
     const jobSignal = this[job].bind(this);
@@ -206,7 +248,7 @@ class BaseState {
    * Calculates cost for the next building of a specific type.
    *
    * @param {string} building The type of building.
-   * @returns {{wood?: number, stone?: number}} The map of `{material: cost}`.
+   * @return {{wood?: number, stone?: number}} The map of `{material: cost}`.
    */
   buildCost(building) {
     let price = {};
@@ -240,7 +282,7 @@ class BaseState {
    * Verifies that there are sufficient resources to for the next building of a specific type.
    *
    * @param {string} building The type of building.
-   * @returns {?{wood?: number, stone?: number}} The map of `{material: deductedValue}` that will be overwritten to be new state, or null if insufficient resources.
+   * @return {?{wood?: number, stone?: number}} The map of `{material: deductedValue}` that will be overwritten to be new state, or null if insufficient resources.
    */
   buildValid(building) {
     let price = this.buildCost(building);
@@ -261,7 +303,7 @@ class BaseState {
    * Builds the next building of a specific type.
    *
    * @param {string} building The type of building.
-   * @returns {boolean} Whether the build command was successful.
+   * @return {boolean} Whether the build command was successful.
    */
   build(building) {
     let costs = this.buildValid(building);
@@ -279,5 +321,28 @@ class BaseState {
         state.worker = this.worker() + +(this.population() < this.populationMax() && this.app.food() > 0);
       }),
     );
+  }
+}
+
+export class QuestState {
+  /**
+   * Constructs a quest.
+   *
+   * @param {AppState} app The application state.
+   * @param {string} title The quest title.
+   * @param {string} content The quest text content.
+   * @param {[string]} objectives The human-friendly objectives to complete the quest.
+   * @param {[string]} conditions The machine-friendly conditions to complete the quest.
+   */
+  constructor(app, title, content, objectives, conditions) {
+    this.app = app;
+    this.title = title;
+    this.content = content;
+    this.objectives = objectives;
+    this.conditions = conditions;
+  }
+
+  complete() {
+    return this.conditions.every((condition) => eval(condition));
   }
 }
