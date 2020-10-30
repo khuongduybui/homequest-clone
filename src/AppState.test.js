@@ -65,8 +65,8 @@ it('starts with 3000 foodMax', () => {
   expect(state.foodMax()).toBe(3000);
 });
 
-it('eats 1 food everyday per population', () => {
-  expect(state.eatRate()).toBe(state.population());
+it('consumes 1 food per population', () => {
+  expect(state.foodConsumeRate()).toBe(state.population());
 });
 
 it('supports 30 loggers in first base', () => {
@@ -105,12 +105,12 @@ it('starts with 1500 woodMax', () => {
   expect(state.woodMax()).toBe(1500);
 });
 
-it('generates 5 wood per logger', () => {
+it('produces 5 wood per logger', () => {
   base0.assign('logger');
-  expect(state.woodRate()).toBe(state.logger() * 5);
+  expect(state.woodProduceRate()).toBe(state.logger() * 5);
 });
 
-it('adds wood everyday until reaching foodMax', () => {
+it('adds wood everyday until reaching woodMax', () => {
   base0.assign('logger');
   const wood = state.wood();
   const woodRate = state.woodRate();
@@ -163,21 +163,20 @@ it('assigns farmer if worker > 0 && farmer < farmerMax', () => {
   expect(base0.farmer()).toBe(0);
 });
 
-it('generates 4 food per farmer', () => {
+it('produces 4 food per farmer', () => {
   base0.setState({ worker: 1, farmer: 0, farm: 1 });
   base0.assign('farmer');
-  expect(state.foodRate()).toBe(state.farmer() * 4);
+  expect(state.foodProduceRate()).toBe(state.farmer() * 4);
 });
 
 it('adds food everyday until reaching foodMax', () => {
   base0.setState({ worker: 1, farmer: 0, farm: 1 });
   base0.assign('farmer');
   const food = state.food();
-  const foodRate = state.foodRate();
-  const population = state.population();
+  const foodRate = state.foodProduceRate();
   const foodMax = state.foodMax();
   state.endDay();
-  expect(state.food()).toBe(Math.min(foodMax, food + foodRate - population));
+  expect(state.food()).toBe(Math.min(foodMax, food + foodRate));
 });
 
 it('starts with no stone', () => {
@@ -206,18 +205,18 @@ it('assigns quarrier if worker > 0 && quarrier < quarrierMax', () => {
   expect(base0.quarrier()).toBe(0);
 });
 
-it('generates 3 stone per quarrier', () => {
+it('produces 3 stone per quarrier', () => {
   base0.assign('quarrier');
-  expect(state.stoneRate()).toBe(state.quarrier() * 3);
+  expect(state.stoneProduceRate()).toBe(state.quarrier() * 3);
 });
 
 it('adds stone everyday until reaching stoneMax', () => {
   base0.assign('quarrier');
   const stone = state.stone();
-  const stoneRate = state.stoneRate();
+  const stoneProduceRate = state.stoneProduceRate();
   const stoneMax = state.stoneMax();
   state.endDay();
-  expect(state.stone()).toBe(Math.min(stoneMax, stone + stoneRate));
+  expect(state.stone()).toBe(Math.min(stoneMax, stone + stoneProduceRate));
 });
 
 it('builds a house if enough wood and stone', () => {

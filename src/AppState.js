@@ -83,7 +83,7 @@ export default class AppState {
     return this.baseStates.map((baseState) => baseState.farmer()).reduce((sum, current) => sum + current, 0);
   }
 
-  foodRate() {
+  foodProduceRate() {
     return this.farmer() * 4;
   }
 
@@ -91,8 +91,12 @@ export default class AppState {
     return this.baseStates.map((baseState) => baseState.population()).reduce((sum, current) => sum + current, 0);
   }
 
-  eatRate() {
+  foodConsumeRate() {
     return this.population();
+  }
+
+  foodRate() {
+    return this.foodProduceRate() - this.foodConsumeRate();
   }
 
   wood() {
@@ -107,8 +111,12 @@ export default class AppState {
     return this.baseStates.map((baseState) => baseState.logger()).reduce((sum, current) => sum + current, 0);
   }
 
-  woodRate() {
+  woodProduceRate() {
     return this.logger() * 5;
+  }
+
+  woodRate() {
+    return this.woodProduceRate();
   }
 
   stone() {
@@ -123,17 +131,21 @@ export default class AppState {
     return this.baseStates.map((baseState) => baseState.quarrier()).reduce((sum, current) => sum + current, 0);
   }
 
-  stoneRate() {
+  stoneProduceRate() {
     return this.quarrier() * 3;
+  }
+
+  stoneRate() {
+    return this.stoneProduceRate();
   }
 
   endDay() {
     const bound = (min, max, value) => Math.max(min, Math.min(max, value));
     this.setState({
       day: this.day() + 1,
-      food: bound(0, this.foodMax(), this.food() + this.foodRate() - this.population()),
-      wood: bound(0, this.woodMax(), this.wood() + this.woodRate()),
-      stone: bound(0, this.stoneMax(), this.stone() + this.stoneRate()),
+      food: bound(0, this.foodMax(), this.food() + this.foodRate()),
+      wood: bound(0, this.woodMax(), this.wood() + this.woodProduceRate()),
+      stone: bound(0, this.stoneMax(), this.stone() + this.stoneProduceRate()),
     });
     this.baseStates.forEach((baseState) => baseState.endDay());
   }
