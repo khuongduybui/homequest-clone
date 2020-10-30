@@ -89,14 +89,14 @@ function App() {
 
       <section>
         <div>
-          Food <code>{state.food()}</code>/<code>{state.foodMax()}</code> (+<code>{state.foodRate()}</code> from workers, -<code>{state.eatRate()}</code> from
-          population)
+          Food <code>{state.food()}</code>/<code>{state.foodMax()}</code> (+<code>{state.foodProduceRate()}</code> from workers, -
+          <code>{state.foodConsumeRate()}</code> from population = <code>{state.foodRate()}</code>)
         </div>
         <div>
-          Wood <code>{state.wood()}</code>/<code>{state.woodMax()}</code> (+<code>{state.woodRate()}</code> from workers)
+          Wood <code>{state.wood()}</code>/<code>{state.woodMax()}</code> (+<code>{state.woodProduceRate()}</code> from workers)
         </div>
         <div>
-          Stone <code>{state.stone()}</code>/<code>{state.stoneMax()}</code> (+<code>{state.stoneRate()}</code> from workers)
+          Stone <code>{state.stone()}</code>/<code>{state.stoneMax()}</code> (+<code>{state.stoneProduceRate()}</code> from workers)
         </div>
       </section>
 
