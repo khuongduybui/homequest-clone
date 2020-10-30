@@ -5,4 +5,4 @@
 
 This project is a clone (with a twist) of the [HomeQuest game on Android](https://play.google.com/store/apps/details?id=de.codestream.horus).
 
-The current version can be found on [https://homequest.vercel.app/].
+The current version can be found on https://homequest.vercel.app/.
