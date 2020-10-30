@@ -4,7 +4,7 @@ export default class AppState {
   constructor(initState = {}) {
     const initStateDefault = { day: 0, bases: [{ active: true }], food: 3000, foodMaxInit: 3000, wood: 0, woodMaxInit: 1500, stone: 0 };
     this.stateInit = { ...initStateDefault, ...initState };
-    const [state, setState] = createState(localStorage && localStorage.app ? JSON.parse(localStorage.app) : { ...this.stateInit });
+    const [state, setState] = createState(JSON.parse(localStorage?.app ?? null) ?? { ...this.stateInit });
     this.state = state;
     this.setState = setState;
 
@@ -157,7 +157,7 @@ class BaseState {
     this.id = id;
     const initStateDefault = { house: 1, worker: 1, logger: 0, farm: 0, farmer: 0, quarrier: 0, monument: 0 };
     this.stateInit = { ...initStateDefault, ...initState };
-    const [state, setState] = createState(localStorage && localStorage[id] ? JSON.parse(localStorage[id]) : { ...this.stateInit });
+    const [state, setState] = createState(JSON.parse(localStorage?.[id] ?? null) ?? { ...this.stateInit });
     this.state = state;
     this.setState = setState;
   }

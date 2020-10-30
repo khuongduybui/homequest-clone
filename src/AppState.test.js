@@ -213,17 +213,19 @@ it('produces 3 stone per quarrier', () => {
 it('adds stone everyday until reaching stoneMax', () => {
   base0.assign('quarrier');
   const stone = state.stone();
-  const stoneProduceRate = state.stoneProduceRate();
+  const stoneRate = state.stoneRate();
   const stoneMax = state.stoneMax();
   state.endDay();
-  expect(state.stone()).toBe(Math.min(stoneMax, stone + stoneProduceRate));
+  expect(state.stone()).toBe(Math.min(stoneMax, stone + stoneRate));
 });
 
 it('builds a house if enough wood and stone', () => {
   const house = base0.house();
+  expect(base0.build('house')).toBe(false);
+
   const { wood, stone } = base0.buildCost('house');
   state.setState({ wood, stone });
-  base0.build('house');
+  expect(base0.build('house')).toBe(true);
   expect(base0.house()).toBe(house + 1);
   expect(state.wood()).toBeLessThan(wood);
   expect(state.stone()).toBeLessThan(stone);
@@ -247,5 +249,7 @@ it('lists only 1 incomplete quest', () => {
   const quest2 = new QuestState(state, 'test', 'false', ['false'], ['false']);
   const quest3 = new QuestState(state, 'test', 'false', ['false'], ['false']);
   state.questStates = [quest1, quest2, quest3];
+  expect(state.questState(0).complete()).toBe(true);
+  expect(state.questState(1).complete()).toBe(false);
   expect(state.quests().length).toBe(2);
 });
