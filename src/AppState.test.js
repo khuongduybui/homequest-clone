@@ -1,4 +1,4 @@
-import AppState from './AppState';
+import AppState, { QuestState } from './AppState';
 
 let state, base0;
 
@@ -22,7 +22,7 @@ it('starts at Day 0 and increases everyday', () => {
 });
 
 it('starts with first base', () => {
-  expect(state.bases()[0].active).toBe(true);
+  expect(state.bases().length).toBe(1);
 });
 
 it('has a house in first base', () => {
@@ -228,4 +228,25 @@ it('builds a house if enough wood and stone', () => {
   expect(base0.house()).toBe(house + 1);
   expect(state.wood()).toBeLessThan(wood);
   expect(state.stone()).toBeLessThan(stone);
+});
+
+it('passes a quest condition', () => {
+  const quest1 = new QuestState(state, 'test', 'true', ['true'], ['true']);
+  expect(quest1.complete()).toBe(true);
+
+  const quest2 = new QuestState(state, 'test', 'false', ['false'], ['false']);
+  expect(quest2.complete()).toBe(false);
+
+  const quest3 = new QuestState(state, 'test', 'farm', ['base0.farm > 0'], ['this.app.baseState(0).farm() > 0']);
+  expect(quest3.complete()).toBe(false);
+  base0.setState({ farm: 1 });
+  expect(quest3.complete()).toBe(true);
+});
+
+it('lists only 1 incomplete quest', () => {
+  const quest1 = new QuestState(state, 'test', 'true', ['true'], ['true']);
+  const quest2 = new QuestState(state, 'test', 'false', ['false'], ['false']);
+  const quest3 = new QuestState(state, 'test', 'false', ['false'], ['false']);
+  state.questStates = [quest1, quest2, quest3];
+  expect(state.quests().length).toBe(2);
 });
