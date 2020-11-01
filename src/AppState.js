@@ -26,7 +26,7 @@ export default class AppState {
         this,
         'Another Life',
         "Welcome. You find yourself in an unknown place. Unsure of what these lands might hold, you decide it's best to grow your settlement. Hurry and assign your workers to gather resources and construct your first buildings.",
-        ["Don' starve and build a farm."],
+        ["Don't starve and build a farm."],
         ['this.app.baseState(0).farm() > 0'],
       ),
       new QuestState(
