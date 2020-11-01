@@ -3,15 +3,17 @@ import { createEffect } from 'solid-js';
 import AppState from './AppState';
 import './App.css';
 
-const Job = ({ base, job, title }) => {
+const Job = ({ base, job, title, effect }) => {
   const assign = (event) => base.assign(job);
   const unassign = (event) => base.unassign(job);
   const jobSignal = base[job].bind(base);
   const maxKey = `${job}Max`;
   const maxSignal = base[maxKey].bind(base);
+  const effectKey = `${job}Effect`;
+  const effectSignal = base.app[effectKey].bind(base.app);
   return (
     <div>
-      {title} <code>{jobSignal()}</code>/<code>{maxSignal()}</code>
+      {title} <code>{jobSignal()}</code>/<code>{maxSignal()}</code> (producing {effectSignal()} {effect} each)
       <Show when={jobSignal() < maxSignal() && base.worker() > 0}>
         <button onClick={assign}>Assign</button>
       </Show>
@@ -22,14 +24,17 @@ const Job = ({ base, job, title }) => {
   );
 };
 
-const Building = ({ base, building, title }) => {
+const Building = ({ base, building, title, effect }) => {
   const build = (event) => base.build(building);
+  const effectKey = `${building}Effect`;
+  const effectSignal = base.app[effectKey].bind(base.app);
   return (
     <div>
-      {title} <code>{base[building]()}</code> <pre>{JSON.stringify(base.buildCost(building))}</pre>
+      {title} <code>{base[building]()}</code> (supporting {effectSignal()} {effect} each)
       <Show when={base.buildValid(building)}>
         <button onClick={build}>Build</button>
       </Show>
+      <pre>{JSON.stringify(base.buildCost(building))}</pre>
     </div>
   );
 };
@@ -39,16 +44,16 @@ const Base = ({ base }) => {
     <>
       <div>Base {base.id}</div>
       <section>
-        <Building base={base} building='house' title='House'></Building>
-        <Building base={base} building='farm' title='Farm'></Building>
+        <Building base={base} building='house' title='House' effect='workers'></Building>
+        <Building base={base} building='farm' title='Farm' effect='farmers'></Building>
       </section>
       <section>
         <div>
           Worker <code>{base.worker()}</code>
         </div>
-        <Job base={base} job='farmer' title='Farmer'></Job>
-        <Job base={base} job='logger' title='Logger'></Job>
-        <Job base={base} job='quarrier' title='Quarrier'></Job>
+        <Job base={base} job='farmer' title='Farmer' effect='food'></Job>
+        <Job base={base} job='logger' title='Logger' effect='wood'></Job>
+        <Job base={base} job='quarrier' title='Quarrier' effect='stone'></Job>
       </section>
     </>
   );
