@@ -4,12 +4,12 @@
   "private": true,
   "homepage": "https://homequest.vercel.app",
   "devDependencies": {
-    "patch-package": "^6.2.2",
-    "postinstall-postinstall": "^2.1.0",
+    "patch-package": "6.2.2",
+    "postinstall-postinstall": "2.1.0",
     "solid-js": "0.21.3",
     "solid-scripts": "0.0.42",
-    "tailwindcss": "^1.9.6",
-    "tailwindcss-elevation": "^0.3.5"
+    "tailwindcss": "1.9.6",
+    "tailwindcss-elevation": "0.3.5"
   },
   "dependencies": {},
   "scripts": {
