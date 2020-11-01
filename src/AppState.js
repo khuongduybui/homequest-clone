@@ -2,7 +2,19 @@ import { createState, produce } from 'solid-js';
 
 export default class AppState {
   constructor(initState = {}) {
-    const initStateDefault = { day: 0, bases: [{ active: true }], food: 3000, foodMaxInit: 3000, wood: 0, woodMaxInit: 1500, stone: 0 };
+    const initStateDefault = {
+      day: 0,
+      bases: [{ active: true }],
+      houseEffect: 2,
+      food: 3000,
+      foodMaxInit: 3000,
+      farmerEffect: 4,
+      wood: 0,
+      woodMaxInit: 1500,
+      loggerEffect: 5,
+      stone: 0,
+      quarrierEffect: 3,
+    };
     this.stateInit = { ...initStateDefault, ...initState };
     const [state, setState] = createState(JSON.parse(localStorage?.app ?? null) ?? { ...this.stateInit });
     this.state = state;
@@ -71,6 +83,13 @@ export default class AppState {
     return this.questStates[index];
   }
 
+  houseEffect() {
+    return this.state.houseEffect;
+  }
+
+  farmEffect() {
+    return this.houseEffect();
+  }
   food() {
     return this.state.food;
   }
@@ -83,8 +102,12 @@ export default class AppState {
     return this.baseStates.map((baseState) => baseState.farmer()).reduce((sum, current) => sum + current, 0);
   }
 
+  farmerEffect() {
+    return this.state.farmerEffect;
+  }
+
   foodProduceRate() {
-    return this.farmer() * 4;
+    return this.farmer() * this.farmerEffect();
   }
 
   population() {
@@ -111,8 +134,12 @@ export default class AppState {
     return this.baseStates.map((baseState) => baseState.logger()).reduce((sum, current) => sum + current, 0);
   }
 
+  loggerEffect() {
+    return this.state.loggerEffect;
+  }
+
   woodProduceRate() {
-    return this.logger() * 5;
+    return this.logger() * this.loggerEffect();
   }
 
   woodRate() {
@@ -131,8 +158,12 @@ export default class AppState {
     return this.baseStates.map((baseState) => baseState.quarrier()).reduce((sum, current) => sum + current, 0);
   }
 
+  quarrierEffect() {
+    return this.state.quarrierEffect;
+  }
+
   stoneProduceRate() {
-    return this.quarrier() * 3;
+    return this.quarrier() * this.quarrierEffect();
   }
 
   stoneRate() {
@@ -175,7 +206,7 @@ class BaseState {
   }
 
   populationMax() {
-    return this.house() * 2;
+    return this.house() * this.app.houseEffect();
   }
 
   worker() {
@@ -199,7 +230,7 @@ class BaseState {
   }
 
   farmerMax() {
-    return this.farm() * 2;
+    return this.farm() * this.app.farmEffect();
   }
 
   farmer() {
