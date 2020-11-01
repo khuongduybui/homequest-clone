@@ -1,7 +1,67 @@
+@import '../node_modules/water.css/out/water.min.css';
+/* @import 'tailwindcss/base'; */ /* base provided by water.css */
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Override water.css opinionated settings. */
+body {
+  max-width: initial;
+}
+
+/* Bootstrap-ish color theme */
+@mixin light {
+  --color-primary: hsl(240, 85%, 35%);
+  --color-secondary: hsl(240, 15%, 35%);
+  --color-info: hsl(200, 85%, 35%);
+  --color-success: hsl(120, 85%, 35%);
+  --color-warning: hsl(30, 85%, 35%);
+  --color-danger: hsl(0, 85%, 35%);
+}
+@mixin dark {
+  --color-primary: hsl(240, 85%, 65%);
+  --color-secondary: hsl(240, 15%, 65%);
+  --color-info: hsl(200, 85%, 65%);
+  --color-success: hsl(120, 85%, 65%);
+  --color-warning: hsl(30, 85%, 65%);
+  --color-danger: hsl(0, 85%, 65%);
+}
+
+:root,
+.light {
+  @include light;
+}
+.dark {
+  @include dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include dark;
+  }
+  img {
+    opacity: 0.75;
+    transition: opacity 0.25s ease-in-out;
+  }
+  img:hover {
+    opacity: 1;
+  }
+}
+
+/* tailwindcss-elevation */
+:root {
+  --color-shadow: 54, 54, 54;
+  --color-backdrop: 219, 219, 219;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-shadow: 219, 219, 219;
+    --color-backdrop: 54, 54, 54;
+  }
+}
+
 /* GitHub corner from https://tholman.com/github-corners/ */
 .github-corner svg {
-  fill: #2b3137;
-  color: white;
+  fill: var(--text-main);
+  color: var(--background);
   position: absolute;
   top: 0;
   border: 0;
