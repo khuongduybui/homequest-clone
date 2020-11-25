@@ -1962,10 +1962,10 @@ babel-plugin-jest-hoist@^26.5.0:
     "@types/babel__core" "^7.0.0"
     "@types/babel__traverse" "^7.0.6"
 
-babel-plugin-jsx-dom-expressions@~0.22.2:
-  version "0.22.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-dom-expressions/-/babel-plugin-jsx-dom-expressions-0.22.2.tgz#4d8499b835d326485b4882511deb194ccd6fe217"
-  integrity sha512-9IX8kF01YZJfvZ2VyplwslIWX4GPCSqwqkBzasE6bLs9TJKU8GKYsvPC3U6Xr1uSG/gabpniu7a+jxJVNITLRA==
+babel-plugin-jsx-dom-expressions@~0.23.4:
+  version "0.23.4"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-dom-expressions/-/babel-plugin-jsx-dom-expressions-0.23.4.tgz#a2cfc6d50e06cc0ba6265bed65ef4a293789eea2"
+  integrity sha512-JPzfvyCXVPNHVk0NZKsFOpA1o1U5sjdutUiXI9CzeL78pOqsuJMc3G2IIQhGwbfjZQgwSIMwxOaoAjMFT5Y9ag==
   dependencies:
     "@babel/helper-module-imports" "^7.10.4"
     "@babel/plugin-syntax-jsx" "^7.10.4"
@@ -1983,11 +1983,6 @@ babel-plugin-transform-object-rest-spread@^6.26.0:
   dependencies:
     babel-plugin-syntax-object-rest-spread "^6.8.0"
     babel-runtime "^6.26.0"
-
-babel-plugin-transform-rename-import@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-rename-import/-/babel-plugin-transform-rename-import-2.3.0.tgz#5d9d645f937b0ca5c26a24b2510a06277b6ffd9b"
-  integrity sha512-dPgJoT57XC0PqSnLgl2FwNvxFrWlspatX2dkk7yjKQj5HHGw071vAcOf+hqW8ClqcBDMvEbm6mevn5yHAD8mlQ==
 
 babel-preset-current-node-syntax@^0.1.3:
   version "0.1.4"
@@ -2014,13 +2009,12 @@ babel-preset-jest@^26.5.0:
     babel-plugin-jest-hoist "^26.5.0"
     babel-preset-current-node-syntax "^0.1.3"
 
-babel-preset-solid@^0.21.0:
-  version "0.21.3"
-  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-0.21.3.tgz#cde4cf673ec1f108a9cd2bc969f7136b2e9881e1"
-  integrity sha512-I/58tn1ymdJDsLxN7jP9naBkBuDbuYVqFRzvg6teMag37An/uhNcWLY9TWZp3Qe9eiWhvrnJ2Sc4hbXrXqOwHA==
+babel-preset-solid@^0.22.1:
+  version "0.22.7"
+  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-0.22.7.tgz#0e238689ba522c386b66ec1fca7df0c5fe17695f"
+  integrity sha512-MAIt+wJeI+xfEUHBe3V9o87+slvq4JMwEmNt7mrKN+XxvNg6hOpwo997Im2vR2N5vunYBat4YsWVfN5nQuRCpQ==
   dependencies:
-    babel-plugin-jsx-dom-expressions "~0.22.2"
-    babel-plugin-transform-rename-import "^2.3.0"
+    babel-plugin-jsx-dom-expressions "~0.23.4"
 
 babel-runtime@^6.26.0:
   version "6.26.0"
@@ -8823,10 +8817,10 @@ solid-js@0.21.4:
   resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-0.21.4.tgz#1205b7f786d654f55fa80f1f4eee5b4572e91304"
   integrity sha512-qmkzkZqgq0DaAwv5CNb6kp5UtcWekoPrJqTRvQyETs/QI7OCiIuQc9I1AItYcWF8VsXJ8axBBT4L7uEJIiULzA==
 
-solid-scripts@0.0.42:
-  version "0.0.42"
-  resolved "https://registry.yarnpkg.com/solid-scripts/-/solid-scripts-0.0.42.tgz#a9148604a8db83e6d78e0d931d0a1f270513f38f"
-  integrity sha512-nRCVYPwlMteaI+HE1t96EqiB2iVIA8xld7wWLwBAXNuwB/XnE56qcZp3hddLC7X/6b8Zf54TVTzewgZjD2zFEg==
+solid-scripts@0.0.44:
+  version "0.0.44"
+  resolved "https://registry.yarnpkg.com/solid-scripts/-/solid-scripts-0.0.44.tgz#aff24799d0381f8670aada1e8f0bc20e14f1cef1"
+  integrity sha512-Kb4zlyLmH8U0vre73GwD8zur1vwnzcB+UDgWyFoTxeBmqKJ4g9nJOKZhmEnUmpXyD7i4cTMUIUb7ojLcPncY7g==
   dependencies:
     "@babel/core" "^7.11.1"
     "@babel/plugin-proposal-class-properties" "^7.10.4"
@@ -8837,7 +8831,7 @@ solid-scripts@0.0.42:
     acorn "6.4.1"
     babel-jest "^26.3.0"
     babel-loader "^8.0.6"
-    babel-preset-solid "^0.21.0"
+    babel-preset-solid "^0.22.1"
     case-sensitive-paths-webpack-plugin "^2.2.0"
     component-register-loader "0.0.2"
     css-loader "^2.1.1"
