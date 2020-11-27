@@ -8812,10 +8812,10 @@ sockjs@0.3.20:
     uuid "^3.4.0"
     websocket-driver "0.6.5"
 
-solid-js@0.21.4:
-  version "0.21.4"
-  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-0.21.4.tgz#1205b7f786d654f55fa80f1f4eee5b4572e91304"
-  integrity sha512-qmkzkZqgq0DaAwv5CNb6kp5UtcWekoPrJqTRvQyETs/QI7OCiIuQc9I1AItYcWF8VsXJ8axBBT4L7uEJIiULzA==
+solid-js@0.22.8:
+  version "0.22.8"
+  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-0.22.8.tgz#8dfec9eb2f985e19446c860c2c98018d8c1e4c74"
+  integrity sha512-/htwxsPH2Chay4eRPX/zX7r9eiUIKsOcGAXNm7p9ZfsIXnssm8pTXKtWzQolkcPxKOF1W0jJfnjgjtFSb+DpGA==
 
 solid-scripts@0.0.44:
   version "0.0.44"
