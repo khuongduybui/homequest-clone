@@ -8,7 +8,7 @@
     "postinstall-postinstall": "2.1.0",
     "solid-js": "0.22.8",
     "solid-scripts": "0.0.44",
-    "tailwindcss": "1.9.6",
+    "tailwindcss": "2.0.1",
     "tailwindcss-elevation": "0.3.5",
     "water.css": "2.0.0"
   },
