@@ -1,7 +1,7 @@
 @import '../node_modules/water.css/out/water.min.css';
-/* @import 'tailwindcss/base'; */ /* base provided by water.css */
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
 
 /* Override water.css opinionated settings. */
 body {
