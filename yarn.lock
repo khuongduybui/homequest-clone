@@ -8917,10 +8917,10 @@ solid-js@0.22.8:
   resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-0.22.8.tgz#8dfec9eb2f985e19446c860c2c98018d8c1e4c74"
   integrity sha512-/htwxsPH2Chay4eRPX/zX7r9eiUIKsOcGAXNm7p9ZfsIXnssm8pTXKtWzQolkcPxKOF1W0jJfnjgjtFSb+DpGA==
 
-solid-scripts@0.0.46:
-  version "0.0.46"
-  resolved "https://registry.yarnpkg.com/solid-scripts/-/solid-scripts-0.0.46.tgz#3cc2207740db04cd66bbbc643268722edf4c2a80"
-  integrity sha512-LQEdw7gnzCD5dmsZ3taHRMwa3hXkp0K2jf1I5OX7ySMVB25IKSSYkdFvHveW3GnI8FideipnjoCXQ0tLDI1vRg==
+solid-scripts@0.0.47:
+  version "0.0.47"
+  resolved "https://registry.yarnpkg.com/solid-scripts/-/solid-scripts-0.0.47.tgz#0a6fd45e2b998671c247e058998a56fbc2793815"
+  integrity sha512-HKTKRWFxJ4XsfsrnVExzJ6uN68paKfYAqzvQFlCjY383P1U65xtdS8M8DRtXydH5/si5bybpye69mxDkc9rTvg==
   dependencies:
     "@babel/core" "^7.11.1"
     "@babel/plugin-proposal-class-properties" "^7.10.4"
