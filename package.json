@@ -11,7 +11,7 @@
     "solid-js": "0.22.10",
     "solid-scripts": "0.0.47",
     "tailwindcss": "2.0.1",
-    "tailwindcss-elevation": "0.3.5",
+    "tailwindcss-elevation": "1.0.1",
     "water.css": "2.0.0"
   },
   "dependencies": {},
