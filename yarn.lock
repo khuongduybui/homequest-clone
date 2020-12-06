@@ -8926,10 +8926,10 @@ sockjs@0.3.20:
     uuid "^3.4.0"
     websocket-driver "0.6.5"
 
-solid-js@0.22.10:
-  version "0.22.10"
-  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-0.22.10.tgz#fc1dd4b0d981382b875f6cb3a5c02eb9480a184f"
-  integrity sha512-OaN+JKafUBRizBAiU4HIuuc0AMPSiLZU+Qq48uSU+m34vr9ws9jB/ZX0IAxqPFBW9/T+EJfOKfqt60JJFLZTzg==
+solid-js@0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-0.23.0.tgz#260b9825f08da09aee17fcf503421294d86edc0e"
+  integrity sha512-c7Sl4VbyO+I79wDAIHqK82iVUkjjyj6KGbqIwBmK44eH+smmnCvXre0V6XwhK71Ilp0Sm7nfA0jYPGZeGhmzow==
 
 solid-scripts@0.0.47:
   version "0.0.47"
