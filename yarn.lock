@@ -9395,10 +9395,10 @@ symbol-tree@^3.2.2, symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
-tailwindcss-elevation@0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/tailwindcss-elevation/-/tailwindcss-elevation-0.3.5.tgz#5fe4d44146e23a5623fec4df17aa680bfb9ad18c"
-  integrity sha512-zYKfH2/tJu1HfhPcq80MqV0+UaOrUMBPScJ6d6idjS7Nf9WnbvymRST0GlFaPFgC/EmVevG+BhqOT2yFH+tj0A==
+tailwindcss-elevation@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/tailwindcss-elevation/-/tailwindcss-elevation-1.0.1.tgz#d143704ca2ef1522fe692c8dcf00373085daefba"
+  integrity sha512-XlUwumrKirdXUrBUMq2zZJryy9sRmkFeScR04RB1u5MNv8/qBqnKaOM0EdSNQRDvR0ZI21reKVSNGcAFD0B47w==
   dependencies:
     hex-rgb "^4.1.0"
 
