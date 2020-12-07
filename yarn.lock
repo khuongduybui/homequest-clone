@@ -1979,10 +1979,10 @@ babel-plugin-jest-hoist@^26.5.0:
     "@types/babel__core" "^7.0.0"
     "@types/babel__traverse" "^7.0.6"
 
-babel-plugin-jsx-dom-expressions@~0.23.4:
-  version "0.23.4"
-  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-dom-expressions/-/babel-plugin-jsx-dom-expressions-0.23.4.tgz#a2cfc6d50e06cc0ba6265bed65ef4a293789eea2"
-  integrity sha512-JPzfvyCXVPNHVk0NZKsFOpA1o1U5sjdutUiXI9CzeL78pOqsuJMc3G2IIQhGwbfjZQgwSIMwxOaoAjMFT5Y9ag==
+babel-plugin-jsx-dom-expressions@~0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-dom-expressions/-/babel-plugin-jsx-dom-expressions-0.24.0.tgz#d62719b80331fcebb3e0e9f022e9a46830ce05f0"
+  integrity sha512-P3I7tS+YabLnbv3ED1ApT7qyyipAEb65/PiN0hl4lEIfRO2YF17/bbgi07v8dXFLYvUoaqtsbTC/H9WL9EHagw==
   dependencies:
     "@babel/helper-module-imports" "^7.10.4"
     "@babel/plugin-syntax-jsx" "^7.10.4"
@@ -2026,12 +2026,12 @@ babel-preset-jest@^26.5.0:
     babel-plugin-jest-hoist "^26.5.0"
     babel-preset-current-node-syntax "^0.1.3"
 
-babel-preset-solid@^0.22.7:
-  version "0.22.7"
-  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-0.22.7.tgz#0e238689ba522c386b66ec1fca7df0c5fe17695f"
-  integrity sha512-MAIt+wJeI+xfEUHBe3V9o87+slvq4JMwEmNt7mrKN+XxvNg6hOpwo997Im2vR2N5vunYBat4YsWVfN5nQuRCpQ==
+babel-preset-solid@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-solid/-/babel-preset-solid-0.23.0.tgz#14a1131587c48dc2632707e44f3f3fe19123b553"
+  integrity sha512-+YFwSjbkme1XGVj3Zxy6hZD/yXE/QJneZxKb3q73j555N1m2Lk7aqFvqxehZq6z3USoxo6W5dMjK+5VQZr4InQ==
   dependencies:
-    babel-plugin-jsx-dom-expressions "~0.23.4"
+    babel-plugin-jsx-dom-expressions "~0.24.0"
 
 babel-runtime@^6.26.0:
   version "6.26.0"
@@ -7884,7 +7884,7 @@ postcss@7.0.32:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@8.1.14:
+postcss@8.1.14, postcss@^8.1.8:
   version "8.1.14"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.1.14.tgz#77d6a5db2fdc0afa918e24af5323a53fb8727f2e"
   integrity sha512-KatkyVPBKfENS+c3dpXJoDXnDD5UZs5exAnDksLqaRJPKwYphEPZt4N0m0i049v2/BtWVQibAhxW4ilXXcolpA==
@@ -8931,10 +8931,10 @@ solid-js@0.23.0:
   resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-0.23.0.tgz#260b9825f08da09aee17fcf503421294d86edc0e"
   integrity sha512-c7Sl4VbyO+I79wDAIHqK82iVUkjjyj6KGbqIwBmK44eH+smmnCvXre0V6XwhK71Ilp0Sm7nfA0jYPGZeGhmzow==
 
-solid-scripts@0.0.47:
-  version "0.0.47"
-  resolved "https://registry.yarnpkg.com/solid-scripts/-/solid-scripts-0.0.47.tgz#0a6fd45e2b998671c247e058998a56fbc2793815"
-  integrity sha512-HKTKRWFxJ4XsfsrnVExzJ6uN68paKfYAqzvQFlCjY383P1U65xtdS8M8DRtXydH5/si5bybpye69mxDkc9rTvg==
+solid-scripts@0.0.49:
+  version "0.0.49"
+  resolved "https://registry.yarnpkg.com/solid-scripts/-/solid-scripts-0.0.49.tgz#8e5d1aa695aa8c15eb4c93884470ceb9159699e3"
+  integrity sha512-mvP1hADsxG/dEi3BnirwoiEp4ugd/iVaWNJ4COiZuZLg/xFwjddoQdD2Uc57O8/73lr8VkW4GJTjn9pNGBSecQ==
   dependencies:
     "@babel/core" "^7.11.1"
     "@babel/plugin-proposal-class-properties" "^7.10.4"
@@ -8945,7 +8945,7 @@ solid-scripts@0.0.47:
     acorn "6.4.1"
     babel-jest "^26.3.0"
     babel-loader "^8.0.6"
-    babel-preset-solid "^0.22.7"
+    babel-preset-solid "^0.23.0"
     case-sensitive-paths-webpack-plugin "^2.2.0"
     component-register-loader "0.0.2"
     css-loader "^2.1.1"
@@ -8960,6 +8960,7 @@ solid-scripts@0.0.47:
     jest-environment-jsdom-fourteen "^1.0.1"
     jest-watch-typeahead "^0.6.0"
     optimize-css-assets-webpack-plugin "^5.0.1"
+    postcss "^8.1.8"
     postcss-flexbugs-fixes "^5.0.2"
     postcss-loader "^4.1.0"
     postcss-normalize "^9.0.0"
