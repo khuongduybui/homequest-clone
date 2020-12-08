@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://homequest.vercel.app",
   "devDependencies": {
-    "autoprefixer": "10.0.4",
+    "autoprefixer": "10.1.0",
     "patch-package": "6.2.2",
     "postcss": "8.1.14",
     "postinstall-postinstall": "2.1.0",
