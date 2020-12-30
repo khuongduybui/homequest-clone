@@ -58,7 +58,7 @@
     "start": "gulp",
     "build": "gulp clean && cross-env NODE_ENV=production gulp build",
     "clear-cache": "gulp clear-cache",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "cypress": "cypress run",
     "test:e2e": "cross-env CI=1 start-server-and-test start http://localhost:9000 cypress"
   },

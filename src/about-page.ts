@@ -1,10 +1,9 @@
 import { StateService } from "./state-service";
 
-export class WelcomePage {
+export class AboutPage {
   public static readonly inject = [StateService];
   public state: StateService;
   constructor(state: StateService) {
     this.state = state;
   }
-  public message = "Welcome to Aurelia 2!";
 }
