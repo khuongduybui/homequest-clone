@@ -1,6 +1,6 @@
 import { StateService } from "./state-service";
 
-export class AboutPage {
+export class TreasuryPage {
   public static readonly inject = [StateService];
   public state: StateService;
   constructor(state: StateService) {

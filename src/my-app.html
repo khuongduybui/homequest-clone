@@ -1,14 +1,21 @@
-<import from="./welcome-page"></import>
-<import from="./about-page"></import>
+<import from="./treasury-page"></import>
+<import from="./worker-page"></import>
 <import from="./missing-page"></import>
 
 <div>
-  <button click.trigger="state.resetFoo()">Reset Foo</button>
+  <p>Day <code>${state.day}</code></p>
+  <p>Population <code>${state.population}</code></p>
+  <p>Food <code>${state.food}</code> (<code>${state.foodDelta}</code>)</p>
+  <button click.trigger="state.turn()">End Day</button>
 </div>
 
 <nav>
-  <a load="welcome-page">Welcome</a>
-  <a load="about-page">About</a>
+  <a load="treasury-page">Treasury</a>
+  <a load="worker-page">Workers</a>
 </nav>
 
-<au-viewport default="welcome-page" fallback="missing-page"></au-viewport>
+<au-viewport default="treasury-page" fallback="missing-page"></au-viewport>
+
+<div>
+  <button click.trigger="state.reset()">Reset</button>
+</div>

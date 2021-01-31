@@ -1,0 +1,51 @@
+<section>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">resource</th>
+        <th scope="col">value</th>
+        <th scope="col">min</th>
+        <th scope="col">max</th>
+        <th scope="col">produce</th>
+        <th scope="col">consume</th>
+        <th scope="col">delta</th>
+        <th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">population</th>
+        <td><code>${base.population}</code></td>
+        <td><code>${base.populationMin}</code></td>
+        <td><code>${base.populationMax}</code></td>
+        <td><code>${base.populationProduce}</code></td>
+        <td><code>${base.populationConsume}</code></td>
+        <td><code>${base.populationDelta}</code></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th scope="row">worker</th>
+        <td><code>${base.worker}</code></td>
+        <td><code>${base.workerMin}</code></td>
+        <td><code>${base.workerMax}</code></td>
+        <td><code>${base.workerProduce}</code></td>
+        <td><code>${base.workerConsume}</code></td>
+        <td><code>${base.workerDelta}</code></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th scope="row">logger</th>
+        <td><code>${base.logger}</code></td>
+        <td><code>${base.loggerMin}</code></td>
+        <td><code>${base.loggerMax}</code></td>
+        <td><code>${base.loggerProduce}</code></td>
+        <td><code>${base.loggerConsume}</code></td>
+        <td><code>${base.loggerDelta}</code></td>
+        <td>
+          <button click.trigger="base.assign('logger')">+</button>
+          <button click.trigger="base.unassign('logger')">-</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
