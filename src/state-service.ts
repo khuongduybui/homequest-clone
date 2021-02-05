@@ -1,14 +1,16 @@
-export type Resource = 'day' | 'food' | 'house' | 'logger' | 'population' | 'wood' | 'worker';
+export type Resource = 'day' | 'farm' | 'farmer' | 'food' | 'house' | 'logger' | 'population' | 'wood' | 'worker';
 export type RecursiveResource = 'base';
-export type Job = 'logger' | 'worker';
+export type Job = 'farmer' | 'logger' | 'worker';
 
 export class Factor {
   // hqc food = hq food * 10
   // hqc wood = hq wood * 10
   static dayProduceDefault = 1;
+  static farmerMaxFromFarm = 2;
+  static foodConsumeFromPopulation = 1;
+  static foodProduceFromFarmer = 4;
   static populationMaxFromHouse = 2;
   static populationProduceDefault = 1;
-  static foodConsumeFromPopulation = 1;
   static woodProduceFromLogger = 5;
 }
 
@@ -90,6 +92,7 @@ export class StateService extends State {
   dayProduce = Factor.dayProduceDefault;
   food: number;
   foodMax: number;
+  foodMin: number;
   wood: number;
 
   resources: Resource[] = ['day', 'food', 'wood'];
@@ -125,25 +128,36 @@ export class StateService extends State {
   get woodProduce(): number {
     return this.logger * Factor.woodProduceFromLogger;
   }
+
+  get farmer(): number {
+    return this.sumFromBase((base) => base.farmer);
+  }
+
+  get foodProduce(): number {
+    return this.farmer * Factor.foodProduceFromFarmer;
+  }
 }
 
 export class Base extends State {
   enabled: boolean;
   population: number;
-  populationProduce: number;
+  farm: number;
+  farmer: number;
   house: number;
   logger: number;
   loggerMax: number;
   workerMin: number;
-  state: State;
+  state: StateService;
   resources: Resource[] = ['population'];
 
-  constructor(state: State, { enabled = false, house = 1, population = 1, logger = 0, loggerMax = 30, ...initState }) {
+  constructor(state: StateService, { enabled = false, farm = 0, farmer = 0, house = 1, population = 1, logger = 0, loggerMax = 30, ...initState }) {
     super();
 
     this.state = state;
 
     this.enabled = enabled;
+    this.initResource('farm', { value: farm });
+    this.initResource('farmer', { value: farmer });
     this.initResource('house', { value: house });
     this.initResource('population', { value: population });
     this.initResource('logger', { value: logger, max: loggerMax });
@@ -154,14 +168,25 @@ export class Base extends State {
     return this.house * Factor.populationMaxFromHouse;
   }
 
+  get populationProduce(): number {
+    if (this.state.food > this.state.foodMin) {
+      return Factor.populationProduceDefault
+    }
+    return 0
+  }
+
   get populationFull(): number | undefined {
-    if (this.population < this.populationMax) {
+    if (this.populationProduce > 0 && this.population < this.populationMax) {
       return Math.ceil((this.populationMax - this.population) / this.populationProduce);
     }
   }
 
   get worker(): number {
-    return this.population - this.logger;
+    return this.population - this.farmer - this.logger;
+  }
+
+  get farmerMax(): number {
+    return this.farm * Factor.farmerMaxFromFarm;
   }
 
   assign(job): boolean {
@@ -179,4 +204,21 @@ export class Base extends State {
     }
     return false;
   }
+
+  /*
+    let price = {};
+    if (building === 'farm') {
+      // TODO: build time 20 days
+      price = {
+        wood: [200, 300, 450, 650, 1000],
+      };
+    }
+    if (building === 'house') {
+      // TODO: build time 20 days
+      price = {
+        wood: [100, 100, 150, 150, 200, 250],
+        stone: [100, 100, 150, 150, 200, 250],
+      };
+    }
+  */
 }

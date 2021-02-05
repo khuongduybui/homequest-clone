@@ -1,4 +1,3 @@
-import { worker } from 'cluster';
 import { Base, Factor, StateService } from '../src/state-service';
 
 describe('game', () => {
@@ -55,6 +54,7 @@ describe('game', () => {
   });
 
   test('produces wood from logger', () => {
+    state.base[0].logger = 1;
     expect(state.woodProduce).toEqual(state.logger * Factor.woodProduceFromLogger);
   });
 
@@ -64,6 +64,11 @@ describe('game', () => {
     const delta = state.delta('wood');
     state.turn();
     expect(state.wood).toEqual(wood + delta);
+  });
+
+  test('produces food from farmer', () => {
+    state.base[0].farmer = 1;
+    expect(state.foodProduce).toEqual(state.farmer * Factor.foodProduceFromFarmer);
   });
 });
 
@@ -94,6 +99,13 @@ describe('base 0', () => {
     }
   });
 
+  test('increases no if not enough food', () => {
+    base.state.food = 0;
+    const population = base.population;
+    base.turn();
+    expect(base.population).toEqual(population);
+  });
+
   test('predicts population full when population < populationMax', () => {
     expect(base.populationFull).toBeTruthy();
   });
@@ -103,8 +115,8 @@ describe('base 0', () => {
     expect(base.populationFull).toBeFalsy();
   });
 
-  test('computes worker from population and logger', () => {
-    expect(base.worker).toEqual(base.population - base.logger);
+  test('computes worker from population, farmer, and logger', () => {
+    expect(base.worker).toEqual(base.population - base.farmer - base.logger);
   });
 
   test('starts with 0 logger', () => {
@@ -132,6 +144,38 @@ describe('base 0', () => {
     base.logger = base.loggerMax;
     expect(base.assign('logger')).toEqual(false);
   });
+
+  test('stats with 0 farm', () => {
+    expect(base.farm).toEqual(0);
+  });
+
+  test('starts with 0 farmer', () => {
+    expect(base.farmer).toEqual(0);
+  });
+
+  test('computes farmerMax from farm', () => {
+    base.farm = 10;
+    expect(base.farmerMax).toEqual(base.farm * Factor.farmerMaxFromFarm);
+  });
+
+  test('assigns farmer if worker available', () => {
+    const farmer = base.farmer;
+    const worker = base.worker;
+    base.farm = 1;
+    expect(base.assign('farmer')).toEqual(true);
+    expect(base.farmer).toBeGreaterThan(farmer);
+    expect(base.worker).toBeLessThan(worker);
+  });
+
+  test('assigns no farmer if workerMin reached', () => {
+    base.farmer = base.worker;
+    expect(base.assign('farmer')).toEqual(false);
+  });
+
+  test('assigns no farmer if farmerMax reached', () => {
+    base.farmer = base.farmerMax;
+    expect(base.assign('farmer')).toEqual(false);
+  });
 });
 
 describe('factor', () => {
@@ -140,4 +184,6 @@ describe('factor', () => {
   test('populationProduceDefault = 1', () => expect(Factor.populationProduceDefault).toEqual(1));
   test('foodConsumeFromPopulation = 1', () => expect(Factor.foodConsumeFromPopulation).toEqual(1));
   test('woodProduceFromLogger = 5', () => expect(Factor.woodProduceFromLogger).toEqual(5));
+  test('farmerMaxFromFarm = 2', () => expect(Factor.farmerMaxFromFarm).toEqual(2));
+  test('foodProduceFromFarmer = 4', () => expect(Factor.foodProduceFromFarmer).toEqual(4));
 });
