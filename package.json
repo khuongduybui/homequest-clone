@@ -8,7 +8,7 @@
     "patch-package": "6.4.7",
     "postcss": "8.2.10",
     "postinstall-postinstall": "2.1.0",
-    "solid-js": "0.23.7",
+    "solid-js": "0.26.5",
     "solid-scripts": "0.0.55",
     "tailwindcss": "2.1.1",
     "tailwindcss-elevation": "1.0.1",
